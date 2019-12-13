@@ -1,19 +1,23 @@
-"""https://www.microsoft.com/en-us/research/project/dual-embedding-space-model-desm/?from=http%3A%2F%2Fresearch.microsoft.com%2Fprojects%2Fdesm#!downloads
-"""
+"""Expose the entrypoint."""
 import click
+from greentea.log import LogConfiguration
+from .corpus import Corpus
 
 
-class DogeType(click.ParamType):
+@click.group()
+@click.option('-v', '--verbose', is_flag=True)
+def main(verbose):
+    """Illustrate usage of DESM."""
+    LogConfiguration(verbose, 'desm').configure()
 
-    def convert(self, value, param, ctx):
-        print(value)
-        return str(value)
-        
 
-@click.command()
-@click.option('--count', default=1, help='Number of greetings.', type=DogeType())
-def cli(count):
-    pass
+@main.command()
+@click.option('--size', type=int)
+@click.argument('corpus', type=Corpus.create_from_file)
+def train(corpus):
+    """Train a word2vec model.
 
-def main():
-    cli()
+    CORPUS: A text file that each line is a setence.
+
+    """
+    print('doge')
