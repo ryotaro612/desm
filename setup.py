@@ -1,4 +1,9 @@
-"""
+"""An implementation of dual embedding space model.
+
+References
+----------
+https://www.microsoft.com/en-us/research/project/dual-embedding-space-model-desm/?from=http%3A%2F%2Fresearch.microsoft.com%2Fprojects%2Fdesm
+
 """
 from setuptools import setup, find_packages
 
@@ -6,7 +11,7 @@ from setuptools import setup, find_packages
 setup(name='desm',
       version="0.0.1",
       description=(
-          'TODO'),
+          'An implementation of dual embedding space model.'),
       python_requires='>=3.8.0',
       url='https://github.com/nryotaro/desm',
       author='Nakamura, Ryotaro',
