@@ -35,3 +35,13 @@ def train(corpus, destination, **kwargs):
 
     with destination.open_writable_stream() as stream:
         word2vec.save(stream)
+
+
+@main.group()
+def build():
+    """Create a DESM model."""
+
+
+@build.command()
+def inin():
+    """Create a IN-IN model."""

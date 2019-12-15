@@ -18,11 +18,6 @@ class Model:
         """
         """
 
-
-    def train(self, corpus: Corpus):
-        """
-        """
-
     def save(self):
         """
         """
