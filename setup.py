@@ -20,6 +20,7 @@ setup(name='desm',
       classifiers=['Programming Language :: Python :: 3.8'],
       packages=find_packages(),
       install_requires=[
+          'gensim',
           'click',
           'greentea==2.0.0'
       ],
