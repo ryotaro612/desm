@@ -1,5 +1,6 @@
 """
 """
+import tarfile
 import dataclasses as d
 import contextlib
 
@@ -21,3 +22,16 @@ class ModelLocation:
         """
         with open(self.location, 'wb') as file_object:
             yield file_object
+
+    @contextlib.contextmanager
+    def get_readable_filepath(self) -> str:
+        """
+        """
+        yield self.location
+
+    @contextlib.contextmanager
+    def open_gz_writable_stream(self):
+        """
+        """
+        with tarfile.open(self.location, mode='w:gz') as stream:
+            yield stream

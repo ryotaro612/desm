@@ -4,6 +4,7 @@ import gensim.models.word2vec as w
 from greentea.log import LogConfiguration
 from .word2vec import Word2VecFactory
 from .model_location import ModelLocation
+from .model import DesmInOut
 
 
 @click.group()
@@ -43,5 +44,15 @@ def build():
 
 
 @build.command()
-def inin():
-    """Create a IN-IN model."""
+@click.argument('word2vec', type=ModelLocation.create)
+@click.argument('desm', type=ModelLocation.create)
+def inout(word2vec, desm):
+    """Create a IN-OUT model.
+
+    WORD2VEC    Path to a trained word2vec model.
+
+    """
+    with word2vec.get_readable_filepath() as filename, \
+            desm.open_gz_writable_stream() as stream:
+        trained_word2vec = w.Word2Vec.load(filename)
+        DesmInOut(trained_word2vec).save(stream)
