@@ -33,7 +33,6 @@ def train(corpus, destination, **kwargs):
     word2vec.train(sentences=corpus,
                    total_examples=word2vec.corpus_count,
                    epochs=word2vec.epochs)
-
     with destination.open_writable_stream() as stream:
         word2vec.save(stream)
 
@@ -52,7 +51,18 @@ def inout(word2vec, desm):
     WORD2VEC    Path to a trained word2vec model.
 
     """
-    with word2vec.get_readable_filepath() as filename, \
-            desm.open_gz_writable_stream() as stream:
-        trained_word2vec = w.Word2Vec.load(filename)
-        DesmInOut(trained_word2vec).save(stream)
+    with word2vec.get_filepath() as filepath:
+        trained_word2vec = w.Word2Vec.load(filepath)
+    DesmInOut(trained_word2vec).save(desm)
+
+
+@main.command()
+@click.option('-n')
+def similarity():
+    """Find the top-N most similar words.
+
+    TODO
+    ----
+    impl.
+
+    """

@@ -26,7 +26,7 @@ class TestMain(TestCase):
         corpus_path = os.path.join(
             os.path.dirname(__file__),
             'test_main_corpus.txt')
-        runner.invoke(
+        result = runner.invoke(
             desm.main,
             ['train',
              '--min-count',
@@ -34,18 +34,18 @@ class TestMain(TestCase):
              corpus_path,
              self.word2vec_path])
 
-        runner.invoke(
+        print(result.exit_code)
+        result = runner.invoke(
             desm.main,
             ['build',
              'inout',
              self.word2vec_path,
              self.desm_path])
+        print(result.exit_code)
 
         model_location = ml.ModelLocation.create(
             self.desm_path)
-        with model_location.open_gz_readable_stream() as \
-                stream:
-            model = m.Desm.load(stream)
-            self.assertIsInstance(model, m.DesmInOut)
-            word2vec = model.word2vec
-            self.assertIsInstance(word2vec, mo.Word2Vec)
+        model = m.Desm.load(model_location)
+        self.assertIsInstance(model, m.DesmInOut)
+        word2vec = model.word2vec
+        self.assertIsInstance(word2vec, mo.Word2Vec)

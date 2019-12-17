@@ -5,20 +5,20 @@ import os.path
 import tempfile
 import joblib
 import gensim.models as m
+from .model_location import ModelLocation
 
 
 class Desm:
     """A base model that implement DESM."""
 
     def __init__(self, word2vec: m.Word2Vec):
-        """
-        """
+        """Take a trained word2vec model."""
         self.word2vec = word2vec
 
-    def save(self, stream):
-        """
-        """
-        with tempfile.TemporaryDirectory() as directory:
+    def save(self, model_location: ModelLocation):
+        """Write this model to `model_location`."""
+        with model_location.open_gz_writable_stream() as stream, \
+                tempfile.TemporaryDirectory() as directory:
             word2vec_path = os.path.join(directory, 'word2vec')
             self.word2vec.save(word2vec_path)
             stream.add(directory, arcname='word2vec_directory')
@@ -28,14 +28,16 @@ class Desm:
             stream.add(desm_path, arcname='desm.pkl')
 
     @classmethod
-    def load(cls, stream):
-        """
+    def load(cls, model_location: ModelLocation):
+        """Load an instance of :py:class:`Desm` to memory.
+
         Returns
         -------
         Desm
 
         """
-        with tempfile.TemporaryDirectory() as directory:
+        with model_location.open_gz_readable_stream() as stream, \
+                tempfile.TemporaryDirectory() as directory:
             stream.extractall(directory)
             model_path = os.path.join(
                 directory, 'word2vec_directory', 'word2vec')

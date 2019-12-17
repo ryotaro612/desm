@@ -7,3 +7,7 @@ class Text:
     """Reprensent a text."""
 
     text: str
+
+
+def a():
+    pass

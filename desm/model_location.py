@@ -24,7 +24,7 @@ class ModelLocation:
             yield file_object
 
     @contextlib.contextmanager
-    def get_readable_filepath(self) -> str:
+    def get_filepath(self) -> str:
         """
         """
         yield self.location
