@@ -1,4 +1,4 @@
-"""An implementation of dual embedding space model.
+:q"""An implementation of dual embedding space model.
 
 References
 ----------

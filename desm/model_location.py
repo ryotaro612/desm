@@ -33,5 +33,14 @@ class ModelLocation:
     def open_gz_writable_stream(self):
         """
         """
-        with tarfile.open(self.location, mode='w:gz') as stream:
+        with tarfile.open(
+                self.location, mode='w:gz') as stream:
+            yield stream
+
+    @contextlib.contextmanager
+    def open_gz_readable_stream(self):
+        """
+        """
+        with tarfile.open(
+                self.location, mode='r:gz') as stream:
             yield stream

@@ -8,12 +8,7 @@ import gensim.models as m
 
 
 class Desm:
-    """
-    TODO
-    ----
-    Use only Keyvector.
-
-    """
+    """A base model that implement DESM."""
 
     def __init__(self, word2vec: m.Word2Vec):
         """
@@ -30,11 +25,11 @@ class Desm:
             self.word2vec = None
             desm_path = os.path.join(directory, 'desm.pkl')
             joblib.dump(self, desm_path)
-            stream.add(desm_path, archname='desm.pkl')
+            stream.add(desm_path, arcname='desm.pkl')
 
-    def load(self, stream):
+    @classmethod
+    def load(cls, stream):
         """
-
         Returns
         -------
         Desm
@@ -49,6 +44,7 @@ class Desm:
             desm = joblib.load(desm_path)
             desm.word2vec = word2vec
             return desm
+
 
 class DesmInOut(Desm):
     """
