@@ -4,7 +4,8 @@ import gensim.models.word2vec as w
 from greentea.log import LogConfiguration
 from .word2vec import Word2VecFactory
 from .model_location import ModelLocation
-from .model import DesmInOut
+from .model import DesmInOut, Desm
+from .similarity_request import SimilaritySpecification
 
 
 @click.group()
@@ -57,12 +58,14 @@ def inout(word2vec, desm):
 
 
 @main.command()
-@click.option('-n')
-def similarity():
+@click.option('-n', type=SimilaritySpecification)
+@click.argument('desm', type=ModelLocation.create)
+def similarity(n: SimilaritySpecification, desm: ModelLocation):
     """Find the top-N most similar words.
 
     TODO
     ----
-    impl.
+    Read a file.
 
     """
+    model = Desm.load(desm)
