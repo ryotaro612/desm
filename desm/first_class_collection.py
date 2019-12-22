@@ -1,5 +1,6 @@
 """Provide classes that represent first class collections."""
 import abc
+import contextlib
 
 
 class FirstClassFileContextManagerProvider(metaclass=abc.ABCMeta):
@@ -9,12 +10,13 @@ class FirstClassFileContextManagerProvider(metaclass=abc.ABCMeta):
         """
         """
         self.filename = filename
-    
+
+    @contextlib.contextmanager
     def __call__(self):
        """
        """
-        with open(self.filename) as stream:
-            yield (self.transform(item) for item in stream)
+       with open(self.filename) as stream:
+           yield (self.transform(item.strip()) for item in stream)
 
     @abc.abstractmethod
     def transform(self, item):
