@@ -3,27 +3,41 @@
 import os
 import os.path
 import tempfile
+from logging import getLogger
 import joblib
 import gensim.models as m
+import gensim.models.keyedvectors as kv
 from .model_location import ModelLocation
 from .keyword import Keyword
 
 
 class Desm:
-    """A base model that implement DESM."""
+    """A base model that implements DESM."""
 
-    def __init__(self, word2vec: m.Word2Vec):
-        """Take a trained word2vec model."""
-        self.word2vec = word2vec
+    _LOGGER = getLogger(__name__)
+
+    def __init__(
+            self,
+            query_keyed_vectors: kv.Word2VecKeyedVectors,
+            document_keyed_vectors: kv.Word2VecKeyedVectors):
+        """Take KeyedVectors objects."""
+        self.query_keyed_vectors = query_keyed_vectors
+        self.document_keyed_vectors = document_keyed_vectors
 
     def save(self, model_location: ModelLocation):
         """Write this model to `model_location`."""
         with model_location.open_gz_writable_stream() as stream, \
                 tempfile.TemporaryDirectory() as directory:
-            word2vec_path = os.path.join(directory, 'word2vec')
-            self.word2vec.save(word2vec_path)
-            stream.add(directory, arcname='word2vec_directory')
-            self.word2vec = None
+            query_kv_dest = os.path.join(directory, 'query_kv')
+            self.query_keyed_vectors.save(query_kv_dest)
+            self.query_keyed_vectors = None
+
+            document_kv_dest = os.path.join(directory, 'document_kv')
+            self.document_keyed_vectors.save(document_kv_dest)
+            self.document_keyed_vectors = None
+
+            stream.add(directory, arcname='keyed_vectors_directory')
+
             desm_path = os.path.join(directory, 'desm.pkl')
             joblib.dump(self, desm_path)
             stream.add(desm_path, arcname='desm.pkl')
@@ -39,13 +53,24 @@ class Desm:
         """
         with model_location.open_gz_readable_stream() as stream, \
                 tempfile.TemporaryDirectory() as directory:
+            cls._LOGGER.debug(
+                    f'Unarchiving a desm model from {model_location}.')
             stream.extractall(directory)
-            model_path = os.path.join(
-                directory, 'word2vec_directory', 'word2vec')
-            word2vec = m.Word2Vec.load(model_path)
+            cls._LOGGER.debug(
+                    f'Deserializing a desm model.')
             desm_path = os.path.join(directory, 'desm.pkl')
             desm = joblib.load(desm_path)
-            desm.word2vec = word2vec
+            cls._LOGGER.debug(
+                    f'Deserializing a KeyedVectors for queries.')
+            model_path = os.path.join(
+                directory, 'query_kv')
+            desm.query_keyed_vectors = kv.Word2VecKeyedVectors.load(model_path)
+            cls._LOGGER.debug(
+                    f'Deserializing a KeyedVectors for documents.')
+            model_path = os.path.join(
+                directory, 'document_kv')
+            desm.document_keyed_vectors = kv.Word2VecKeyedVectors.load(
+                    model_path)
             return desm
 
     def find_similar_keywords(self, top_n: int, keyword: Keyword):
@@ -62,3 +87,11 @@ class Desm:
 class DesmInOut(Desm):
     """
     """
+
+    def __init__(self,
+                 input_kv: kv.Word2VecKeyedVectors,
+                 output_kv: kv.Word2VecKeyedVectors):
+        """
+        """
+        self.input_kv = input_kv
+        self.output_kv = output_kv

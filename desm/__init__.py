@@ -57,6 +57,9 @@ def inout(word2vec, desm):
     """
     with word2vec.get_filepath() as filepath:
         trained_word2vec = w.Word2Vec.load(filepath)
+        kv = trained_word2vec.wv
+        keywords = kv.index2entity
+
     DesmInOut(trained_word2vec).save(desm)
 
 
