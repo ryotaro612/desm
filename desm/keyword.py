@@ -15,4 +15,4 @@ class KeywordContext(FirstClassFileContextManagerProvider):
     def transform(self, item: str):
         """
         """
-        return Keyword(item.strip())
+        return Keyword(item)

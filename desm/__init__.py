@@ -5,8 +5,8 @@ from greentea.log import LogConfiguration
 from .word2vec import Word2VecFactory
 from .model_location import ModelLocation
 from .model import DesmInOut, Desm
-from .keywords import KeywordContext
-from .similarity_specification import SimilaritySpecification
+from .keyword import KeywordContext
+from .similarity_request import SimilarityRequest
 from .gateway.similarity import SimilarityGateway
 from .service.similarity import SimilarityService
 
@@ -66,21 +66,18 @@ def inout(word2vec, desm):
 @click.argument('keywords', type=KeywordContext)
 @click.argument('output', type=SimilarityGateway)
 def similarity(
-        top_n, 
+        top_n,
         desm: ModelLocation,
         keywords: KeywordContext,
-        similarity_gateway):
+        output):
     """Find the top-N most similar words.
 
-    TODO
-    ----
-    Read a file.
+    KEYWORDS:
+
+    OUTPUT:
 
     """
-    specification = SimilaritySpecification(top_n, keywords)
     model = Desm.load(desm)
-    service = SimilarityService(model)
-    service.find_similar_keywords(keywords)
-
-
-
+    service = SimilarityService(model, output)
+    request = SimilarityRequest(top_n, keywords)
+    service.find_similar_keywords(request)

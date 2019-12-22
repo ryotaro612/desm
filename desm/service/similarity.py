@@ -1,12 +1,20 @@
 """
 """
 from ..model import Desm
-from ..keywords import KeywordContext
+from ..keyword import KeywordContext
 from ..gateway.similarity import SimilarityGateway
+from ..similarity_request import SimilarityRequest
 
 
 class SimilarityService:
-    """
+    """Find similar keywords.
+
+    Attributes
+    ----------
+    desm: Desm
+
+    similarity_gateway: SimilarityGateway
+
     """
 
     def __init__(self,
@@ -17,8 +25,15 @@ class SimilarityService:
         self.similarity_gateway = similarity_gateway
 
     def find_similar_keywords(
-            self, keyword_context: KeywordContext):
-        """
-        """
-        raise NotImplementedError
+            self, request: SimilarityRequest) -> None:
+        """Find similar keywords using a DESM model."""
+        with request.keyword_stream() as keywords:
+            similarities = self._find_similarities(request.top_n, keywords)
+            self.similarity_gateway.write_similarities(similarities)
 
+    def _find_similarities(self, top_n, keywords):
+        for keyword in (keyword
+                        for keyword
+                        in keywords
+                        if self.desm.is_acknowledged(keyword)):
+            yield self.desm.find_similar_keywords(top_n, keyword)

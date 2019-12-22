@@ -6,6 +6,7 @@ import tempfile
 import joblib
 import gensim.models as m
 from .model_location import ModelLocation
+from .keyword import Keyword
 
 
 class Desm:
@@ -46,6 +47,16 @@ class Desm:
             desm = joblib.load(desm_path)
             desm.word2vec = word2vec
             return desm
+
+    def find_similar_keywords(self, top_n: int, keyword: Keyword):
+        """
+        """
+        raise NotADirectoryError
+
+    def is_acknowledged(self, keyword: Keyword) -> bool:
+        """
+        """
+        raise NotImplementedError
 
 
 class DesmInOut(Desm):
