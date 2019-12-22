@@ -1,6 +1,7 @@
 """Expose the entrypoint."""
 import click
 import gensim.models.word2vec as w
+import gensim.models.keyedvectors as kv
 from greentea.log import LogConfiguration
 from .word2vec import Word2VecFactory
 from .model_location import ModelLocation
@@ -57,9 +58,14 @@ def inout(word2vec, desm):
     """
     with word2vec.get_filepath() as filepath:
         trained_word2vec = w.Word2Vec.load(filepath)
-        kv = trained_word2vec.wv
-        keywords = kv.index2entity
+        input_keyed_vectors = trained_word2vec.wv
 
+    output_keyed_vectors = kv.Word2VecKeyedVectors(trained_word2vec.vector_size)
+    output_keyed_vectors.add(
+            input_keyed_vectors.index2entity, 
+            trained_word2vec.trainables.syn1neg,
+            replace=True)
+        
     DesmInOut(trained_word2vec).save(desm)
 
 
