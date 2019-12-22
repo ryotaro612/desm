@@ -34,14 +34,12 @@ class TestMain(TestCase):
              corpus_path,
              self.word2vec_path])
 
-        print(result.exit_code)
-        result = runner.invoke(
+        runner.invoke(
             desm.main,
             ['build',
              'inout',
              self.word2vec_path,
              self.desm_path])
-        print(result.exit_code)
 
         model_location = ml.ModelLocation.create(
             self.desm_path)

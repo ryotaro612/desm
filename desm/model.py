@@ -56,7 +56,7 @@ class Desm:
     def is_acknowledged(self, keyword: Keyword) -> bool:
         """
         """
-        raise NotImplementedError
+        return keyword.handle(lambda raw: raw in self.word2vec.wv)
 
 
 class DesmInOut(Desm):
