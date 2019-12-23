@@ -2,6 +2,8 @@
 .DS_Store
 # Emacs
 *~
+# vim
+.vim
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

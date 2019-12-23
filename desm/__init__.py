@@ -60,13 +60,14 @@ def inout(word2vec, desm):
         trained_word2vec = w.Word2Vec.load(filepath)
         input_keyed_vectors = trained_word2vec.wv
 
-    output_keyed_vectors = kv.Word2VecKeyedVectors(trained_word2vec.vector_size)
+    output_keyed_vectors = kv.Word2VecKeyedVectors(
+            trained_word2vec.vector_size)
     output_keyed_vectors.add(
-            input_keyed_vectors.index2entity, 
+            input_keyed_vectors.index2entity,
             trained_word2vec.trainables.syn1neg,
             replace=True)
-        
-    DesmInOut(trained_word2vec).save(desm)
+
+    DesmInOut(input_keyed_vectors, output_keyed_vectors).save(desm)
 
 
 @main.command()
@@ -78,7 +79,7 @@ def similarity(
         top_n,
         desm: ModelLocation,
         keywords: KeywordContext,
-        output):
+        output: SimilarityGateway):
     """Find the top-N most similar words.
 
     KEYWORDS:

@@ -1,11 +1,9 @@
-"""
-"""
+"""Implement DESM models."""
 import os
 import os.path
 import tempfile
 from logging import getLogger
 import joblib
-import gensim.models as m
 import gensim.models.keyedvectors as kv
 from .model_location import ModelLocation
 from .keyword import Keyword
@@ -62,13 +60,14 @@ class Desm:
             desm = joblib.load(desm_path)
             cls._LOGGER.debug(
                     f'Deserializing a KeyedVectors for queries.')
+            keyed_vectors_dir = 'keyed_vectors_directory'
             model_path = os.path.join(
-                directory, 'query_kv')
+                directory, keyed_vectors_dir, 'query_kv')
             desm.query_keyed_vectors = kv.Word2VecKeyedVectors.load(model_path)
             cls._LOGGER.debug(
                     f'Deserializing a KeyedVectors for documents.')
             model_path = os.path.join(
-                directory, 'document_kv')
+                directory, keyed_vectors_dir, 'document_kv')
             desm.document_keyed_vectors = kv.Word2VecKeyedVectors.load(
                     model_path)
             return desm
@@ -81,17 +80,11 @@ class Desm:
     def is_acknowledged(self, keyword: Keyword) -> bool:
         """
         """
-        return keyword.handle(lambda raw: raw in self.word2vec.wv)
+        print(self.query_keyed_vectors)
+        return keyword.handle(
+                lambda raw: raw in self.query_keyed_vectors)
 
 
 class DesmInOut(Desm):
     """
     """
-
-    def __init__(self,
-                 input_kv: kv.Word2VecKeyedVectors,
-                 output_kv: kv.Word2VecKeyedVectors):
-        """
-        """
-        self.input_kv = input_kv
-        self.output_kv = output_kv

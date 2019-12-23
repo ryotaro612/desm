@@ -4,7 +4,7 @@ import os
 import tempfile
 from unittest import TestCase
 from click.testing import CliRunner
-import gensim.models as mo
+import gensim.models.keyedvectors as kv
 import desm
 import desm.model as m
 import desm.model_location as ml
@@ -26,7 +26,7 @@ class TestMain(TestCase):
         corpus_path = os.path.join(
             os.path.dirname(__file__),
             'test_main_corpus.txt')
-        result = runner.invoke(
+        runner.invoke(
             desm.main,
             ['train',
              '--min-count',
@@ -45,5 +45,7 @@ class TestMain(TestCase):
             self.desm_path)
         model = m.Desm.load(model_location)
         self.assertIsInstance(model, m.DesmInOut)
-        word2vec = model.word2vec
-        self.assertIsInstance(word2vec, mo.Word2Vec)
+        for keyed_vectors in [model.query_keyed_vectors,
+                              model.document_keyed_vectors]:
+            self.assertIsInstance(keyed_vectors,
+                                  kv.Word2VecKeyedVectors)
