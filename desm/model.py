@@ -7,7 +7,7 @@ import joblib
 import gensim.models.keyedvectors as kv
 from .model_location import ModelLocation
 from .keyword import Keyword
-from .similarity import Similarities
+from .similar import Similarities
 
 
 class Desm:
