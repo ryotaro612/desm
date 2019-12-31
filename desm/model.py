@@ -7,6 +7,7 @@ import joblib
 import gensim.models.keyedvectors as kv
 from .model_location import ModelLocation
 from .keyword import Keyword
+from .similarity import Similarities
 
 
 class Desm:
@@ -52,37 +53,41 @@ class Desm:
         with model_location.open_gz_readable_stream() as stream, \
                 tempfile.TemporaryDirectory() as directory:
             cls._LOGGER.debug(
-                    f'Unarchiving a desm model from {model_location}.')
+                f'Unarchiving a desm model from {model_location}.')
             stream.extractall(directory)
             cls._LOGGER.debug(
-                    f'Deserializing a desm model.')
+                f'Deserializing a desm model.')
             desm_path = os.path.join(directory, 'desm.pkl')
             desm = joblib.load(desm_path)
             cls._LOGGER.debug(
-                    f'Deserializing a KeyedVectors for queries.')
+                f'Deserializing a KeyedVectors for queries.')
             keyed_vectors_dir = 'keyed_vectors_directory'
             model_path = os.path.join(
                 directory, keyed_vectors_dir, 'query_kv')
-            desm.query_keyed_vectors = kv.Word2VecKeyedVectors.load(model_path)
+            desm.query_keyed_vectors = kv.Word2VecKeyedVectors.load(
+                model_path)
             cls._LOGGER.debug(
-                    f'Deserializing a KeyedVectors for documents.')
+                f'Deserializing a KeyedVectors for documents.')
             model_path = os.path.join(
                 directory, keyed_vectors_dir, 'document_kv')
-            desm.document_keyed_vectors = kv.Word2VecKeyedVectors.load(
-                    model_path)
+            desm.document_keyed_vectors = \
+                kv.Word2VecKeyedVectors.load(model_path)
             return desm
 
-    def find_similar_keywords(self, top_n: int, keyword: Keyword):
+    def find_similar_keywords(
+            self, top_n: int, keyword: Keyword) -> Similarities:
         """
         """
-        raise NotADirectoryError
+        vector = keyword.handle(self.query_keyed_vectors.get_vector)
+        similarities = self.document_keyed_vectors.similar_by_vector(
+            vector, topn=top_n)
+        return Similarities.create_from_tuples(similarities)
 
     def is_acknowledged(self, keyword: Keyword) -> bool:
         """
         """
-        print(self.query_keyed_vectors)
         return keyword.handle(
-                lambda raw: raw in self.query_keyed_vectors)
+            lambda raw: raw in self.query_keyed_vectors)
 
 
 class DesmInOut(Desm):

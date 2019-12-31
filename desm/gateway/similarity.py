@@ -14,8 +14,9 @@ class SimilarityGateway:
     def __init__(self, filename: str):
         """
         """
+        self.filename = filename
 
-    def write_similarities(self, simiarities: Iterable[Similarity]) -> None:
+    def write_similarities(self, simiarities) -> None:
         """
         """
         raise NotImplementedError

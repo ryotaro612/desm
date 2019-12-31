@@ -11,7 +11,7 @@ class Keyword(Primitive):
     keyword: str
 
     @property
-    def primitive(self):
+    def primitive(self) -> str:
         """
         """
         return self.keyword
