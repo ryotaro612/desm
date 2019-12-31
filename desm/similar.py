@@ -1,7 +1,6 @@
 """
 """
 from dataclasses import dataclass
-from collections.abc import Sequence
 from typing import List, Tuple, Iterator
 from numbers import Number
 import numpy as np
@@ -40,7 +39,14 @@ class Similarities(FirstClassSequence):
 
 @dataclass
 class SimilarKeywords:
-    """
+    """Represent a keyword and the found similar keywords.
+
+    Attributes
+    ----------
+    keyword: Keyword
+
+    similarities: Similarities
+
     """
 
     keyword: Keyword
@@ -56,8 +62,14 @@ class SimilarKeywords:
         """
         return self.keyword.keyword
 
-    def get_similarity_tuples(self) -> List[Tuple[str, np.float32]]:
+    def get_similarity_tuples(
+            self, round_decimals=None) -> List[Tuple[str, np.float32]]:
         """
         """
-        return [(similarity.keyword.keyword, similarity.score)
+        return [(similarity.keyword.keyword,
+                 self._round(similarity.score, round_decimals))
                 for similarity in self.similarities]
+
+    def _round(self, np_value, round_decimals):
+        return np.round(np_value, round_decimals) \
+            if round_decimals else np_value
