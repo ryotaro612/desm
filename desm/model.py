@@ -89,6 +89,9 @@ class Desm:
         return keyword.handle(
             lambda raw: raw in self.query_keyed_vectors)
 
+    def rank_score(self):
+        """Apply ranking function."""
+
 
 class DesmInOut(Desm):
     """

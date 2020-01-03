@@ -55,4 +55,3 @@ class TestMain(TestCase):
             self.assertEqual(
                 list(lines[0].keys()),
                 ['keyword', 'neighbor 1', 'similarity 1'])
-
