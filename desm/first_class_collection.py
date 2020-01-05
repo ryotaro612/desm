@@ -32,8 +32,7 @@ class FirstClassSequence(metaclass=abc.ABCMeta):
 
     @abc.abstractproperty
     def sequence(self) -> Sequence[T]:
-        """
-        """
+        """Return the items."""
 
     def __getitem__(self, s):
         """Access the specified items."""

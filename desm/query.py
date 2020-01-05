@@ -1,17 +1,17 @@
 """Implement a query class."""
 from dataclasses import dataclass
 from typing import List
-from .primitive import Primitive
 from .keyword import Keyword
+from .first_class_collection import FirstClassSequence
 
 
 @dataclass
-class Query(Primitive):
+class Query(FirstClassSequence):
     """Represent a query."""
 
     keywords: List[Keyword]
 
     @property
-    def primitive(self):
+    def sequence(self):
         """Return :py:attr:`keywords`."""
         return self.keywords
