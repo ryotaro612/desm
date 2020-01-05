@@ -1,5 +1,4 @@
-"""
-"""
+"""Implement classes relevant with similarity which is estimated by models."""
 from dataclasses import dataclass
 from typing import List, Tuple, Iterator
 from numbers import Number
@@ -9,11 +8,24 @@ from .first_class_collection import FirstClassSequence
 
 
 @dataclass
+class SimilarityScore():
+    """
+    """
+
+    score: np.float32
+
+
+@dataclass
 class Similarity:
     """
     """
     keyword: Keyword
-    score: np.float32
+    score: SimilarityScore
+
+    def get_raw_score(self) -> np.float32:
+        """
+        """
+        return self.score.score
 
 
 @dataclass
@@ -32,9 +44,10 @@ class Similarities(FirstClassSequence):
     def create_from_tuples(
             cls, similarities: Iterator[Tuple[str, Number]]):
         """Create a Similarities."""
-        return Similarities([Similarity(Keyword(similarity[0]),
-                                        np.float32(similarity[1]))
-                             for similarity in similarities])
+        return Similarities([Similarity(
+            Keyword(similarity[0]),
+            SimilarityScore(np.float32(similarity[1])))
+            for similarity in similarities])
 
 
 @dataclass
@@ -64,10 +77,9 @@ class SimilarKeywords:
 
     def get_similarity_tuples(
             self, round_decimals=None) -> List[Tuple[str, np.float32]]:
-        """
-        """
+        """Get the primitive values."""
         return [(similarity.keyword.keyword,
-                 self._round(similarity.score, round_decimals))
+                 self._round(similarity.get_raw_score(), round_decimals))
                 for similarity in self.similarities]
 
     def _round(self, np_value, round_decimals):

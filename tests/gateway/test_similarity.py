@@ -24,7 +24,8 @@ class TestSimilarityGateway(TestCase):
 
     def test_write_similar_kewyords(self):
         keyword = k.Keyword('test')
-        similarity = si.Similarity(k.Keyword('flower'), np.float32(0.1))
+        similarity = si.Similarity(k.Keyword('flower'),
+                                   si.SimilarityScore(np.float32(0.1)))
         similarities = si.Similarities([similarity])
         similar_keywords = si.SimilarKeywords(keyword, similarities)
         similarities_iterator = iter([similar_keywords])

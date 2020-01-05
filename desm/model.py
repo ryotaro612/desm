@@ -4,10 +4,13 @@ import os.path
 import tempfile
 from logging import getLogger
 import joblib
+import numpy as np
 import gensim.models.keyedvectors as kv
 from .model_location import ModelLocation
 from .keyword import Keyword
 from .similar import Similarities
+from .query import Query
+from .document import Document
 
 
 class Desm:
@@ -89,8 +92,13 @@ class Desm:
         return keyword.handle(
             lambda raw: raw in self.query_keyed_vectors)
 
-    def rank_score(self):
+    def rank(self, query: Query, document: Document):
         """Apply ranking function."""
+        query_vector = self.query_keyed_vectors[query.primitive]
+
+    def _l2_normalize(self, array: np.ndarray) -> np.ndarray:
+        array_l2_norm = np.linalg.norm(array, ord=2)
+        return array / array_l2_norm
 
 
 class DesmInOut(Desm):
