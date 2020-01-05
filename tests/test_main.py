@@ -5,6 +5,12 @@ import tempfile
 import csv
 from unittest import TestCase
 from click.testing import CliRunner
+import desm.model_location as ml
+import desm.model as m
+import desm.query as q
+import desm.keyword as k
+import desm.document as d
+import desm.similar as s
 import desm
 
 
@@ -40,6 +46,12 @@ class TestMain(TestCase):
              'inout',
              self.word2vec_path,
              self.desm_path])
+
+        loc = ml.ModelLocation(self.desm_path)
+        model = m.Desm.load(loc)
+        document = d.Document(['a', 'free'])
+        query = q.Query([k.Keyword('free')])
+        self.assertIsInstance(model.rank(query, document), s.SimilarityScore)
 
         keyword_file = os.path.join(os.path.dirname(
             __file__), 'main_smoke_keywords.txt')
