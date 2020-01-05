@@ -2,6 +2,7 @@
 import os
 import os.path
 import tempfile
+from typing import Optional
 from logging import getLogger
 import joblib
 import numpy as np
@@ -92,14 +93,19 @@ class Desm:
         return keyword.handle(
             lambda raw: raw in self.query_keyed_vectors)
 
-    def rank(self, query: Query, document: Document):
+    def rank(self, query: Query, document: Document) \
+            -> Optional[SimilarityScore]:
         """Apply ranking function."""
-        document_vector = self._to_embedding_document(document)
-        query_vector = self._to_query_vectors(query)
-        return SimilarityScore(
-            np.mean(document_vector @ query_vector.T).astype(np.float32))
+        try:
+            document_vector = self._to_embedding_document(document)
+            query_vector = self._to_query_vectors(query)
+            return SimilarityScore(
+                np.mean(document_vector @ query_vector.T).astype(np.float32))
+        except ValueError:
+            return None
 
     def _to_query_vectors(self, query: Query) -> np.ndarray:
+        """Return np.array with (num_of_queries, dim) shape."""
         filtered_query = query.get_query_filtered_by_container(
             self.query_keyed_vectors)
         if filtered_query.is_empty():
@@ -110,7 +116,8 @@ class Desm:
         l2_norm = np.linalg.norm(vectors, ord=2, axis=1).reshape((-1, 1))
         return np.divide(vectors, l2_norm)
 
-    def _to_embedding_document(self, document: Document):
+    def _to_embedding_document(self, document: Document) -> np.ndarray:
+        """Return np.array with (dim,) shape."""
         filtered_document = document.get_document_filtered_by_container(
             self.document_keyed_vectors)
         if filtered_document.is_empty():

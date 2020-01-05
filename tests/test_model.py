@@ -6,6 +6,7 @@ import desm.model as m
 import desm.keyword as k
 import desm.query as q
 import desm.document as d
+import desm.similar as si
 
 
 class TestDesm(TestCase):
@@ -32,20 +33,51 @@ class TestDesm(TestCase):
             self.query_keyed_vectors.__contains__.call_args_list,
             [call(raw_keyword)])
 
-    def test_to_embedding_document_empty(self):
-        """ValueError is raised.
+    @patch('desm.model.Desm._to_query_vectors', side_effect=ValueError)
+    def test_rank_return_to_query_vectors_none(self, to_query_vectors):
+        """Return None.
 
-        ValueError is raised if a document does not
-        contain any acknowledged keywords.
+        _to_query_vectors raise Error.
 
         """
         query = q.Query([])
         document = d.Document([])
+        self.assertFalse(self.target.rank(query, document))
 
+    @patch('desm.model.Desm._to_embedding_document', side_effect=ValueError)
+    def test_rank_return_to_embedding_document_none(
+            self, to_embedding_document):
+        """Return None.
+
+        _to_embedding_document raise Error.
+
+        """
+        query = q.Query([])
+        document = d.Document([])
+        self.assertFalse(self.target.rank(query, document))
+
+    @patch('desm.model.Desm._to_query_vectors',
+           return_value=np.array([[1, 2, 3], [4, 5, 6]]))
+    @patch('desm.model.Desm._to_embedding_document',
+           return_value=np.array([1, 2, 1]))
+    def test_rank(self, to_embedding_document, to_query_vectors):
+        query = q.Query([k.Keyword('a')])
+        document = d.Document(['a', 'quick'])
+        self.assertEqual(
+            self.target.rank(query, document),
+            si.SimilarityScore(np.float32(14.0)))
+
+    def test_to_embedding_document_raise(self):
+        """Raise ValueError.
+
+        Raise ValueError if document does not contain acknowledged kewyords.
+
+        """
+        document = d.Document([])
         with self.assertRaises(ValueError):
-            self.target.rank(query, document)
+            self.target._to_embedding_document(document)
 
-    def test_rank_document_is_embedding(self):
+    def test_to_embedding_document(self):
         document = d.Document(['a', 'quick'])
 
         def getitem(k):
