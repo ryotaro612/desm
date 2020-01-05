@@ -94,11 +94,26 @@ class Desm:
 
     def rank(self, query: Query, document: Document):
         """Apply ranking function."""
-        query_vector = self.query_keyed_vectors[query.primitive]
+        document_vector = self._to_embedding_document(document)
+        raise NotImplementedError
 
     def _l2_normalize(self, array: np.ndarray) -> np.ndarray:
         array_l2_norm = np.linalg.norm(array, ord=2)
         return array / array_l2_norm
+
+    def _to_embedding_document(self, document: Document):
+        filtered_document = document.filter_by(
+            lambda item: item in self.document_keyed_vectors)
+
+        if filtered_document.is_empty():
+            raise ValueError(
+                f"{document} does not contain acknowledged keywords.")
+
+        vectors = np.sum(list(filtered_document.apply_function(
+            lambda keyword: self._l2_normalize(
+                self.document_keyed_vectors[keyword]))), axis=0)
+        return self._l2_normalize(
+            vectors / len(filtered_document)).astype(np.float32)
 
 
 class DesmInOut(Desm):
