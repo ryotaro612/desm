@@ -8,7 +8,7 @@ import numpy as np
 import gensim.models.keyedvectors as kv
 from .model_location import ModelLocation
 from .keyword import Keyword
-from .similar import Similarities
+from .similar import Similarities, SimilarityScore
 from .query import Query
 from .document import Document
 
@@ -95,16 +95,24 @@ class Desm:
     def rank(self, query: Query, document: Document):
         """Apply ranking function."""
         document_vector = self._to_embedding_document(document)
-        raise NotImplementedError
+        query_vector = self._to_query_vectors(query)
+        return SimilarityScore(
+            np.mean(document_vector @ query_vector.T).astype(np.float32))
 
-    def _l2_normalize(self, array: np.ndarray) -> np.ndarray:
-        array_l2_norm = np.linalg.norm(array, ord=2)
-        return array / array_l2_norm
+    def _to_query_vectors(self, query: Query) -> np.ndarray:
+        filtered_query = query.get_query_filtered_by_container(
+            self.query_keyed_vectors)
+        if filtered_query.is_empty():
+            raise ValueError
+
+        vectors = np.array(list(filtered_query.apply_function(
+            lambda keyword: self.query_keyed_vectors[keyword.keyword])))
+        l2_norm = np.linalg.norm(vectors, ord=2, axis=1).reshape((-1, 1))
+        return np.divide(vectors, l2_norm)
 
     def _to_embedding_document(self, document: Document):
-        filtered_document = document.filter_by(
-            lambda item: item in self.document_keyed_vectors)
-
+        filtered_document = document.get_document_filtered_by_container(
+            self.document_keyed_vectors)
         if filtered_document.is_empty():
             raise ValueError(
                 f"{document} does not contain acknowledged keywords.")
@@ -112,8 +120,13 @@ class Desm:
         vectors = np.sum(list(filtered_document.apply_function(
             lambda keyword: self._l2_normalize(
                 self.document_keyed_vectors[keyword]))), axis=0)
+
         return self._l2_normalize(
-            vectors / len(filtered_document)).astype(np.float32)
+            vectors / len(filtered_document))
+
+    def _l2_normalize(self, array: np.ndarray) -> np.ndarray:
+        array_l2_norm = np.linalg.norm(array, ord=2)
+        return array / array_l2_norm
 
 
 class DesmInOut(Desm):

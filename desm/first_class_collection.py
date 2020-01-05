@@ -1,7 +1,7 @@
 """Provide classes that represent first class collections."""
 import abc
 import contextlib
-from typing import Callable, Sequence, Generator
+from typing import Callable, Sequence, Generator, Container
 from .typevar import T, S
 
 
@@ -42,10 +42,10 @@ class FirstClassSequence(metaclass=abc.ABCMeta):
         """Return the size of :py:meth:`sequence`."""
         return len(self.sequence)
 
-    def filter_by(self, filter_function: Callable[[T], bool]):
-        """Return the sequence that meet `filter_function`."""
-        return self.__class__(
-            [item for item in self.sequence if filter_function(item)])
+    def filter_by_container(self, container: Container[T]) \
+            -> Generator[T, None, None]:
+        """Return generator that emits items that container contains."""
+        return (item for item in self.sequence if item in container)
 
     def is_empty(self) -> bool:
         """Return `True` if :py:meth:`sequence` is empty."""
