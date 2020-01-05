@@ -1,0 +1,19 @@
+desm.service package
+====================
+
+.. automodule:: desm.service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+desm.service.similarity module
+------------------------------
+
+.. automodule:: desm.service.similarity
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

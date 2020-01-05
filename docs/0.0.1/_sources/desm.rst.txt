@@ -1,0 +1,115 @@
+desm package
+============
+
+.. automodule:: desm
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   desm.gateway
+   desm.service
+
+Submodules
+----------
+
+desm.document module
+--------------------
+
+.. automodule:: desm.document
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+desm.factory module
+-------------------
+
+.. automodule:: desm.factory
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+desm.first\_class\_collection module
+------------------------------------
+
+.. automodule:: desm.first_class_collection
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+desm.keyword module
+-------------------
+
+.. automodule:: desm.keyword
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+desm.model module
+-----------------
+
+.. automodule:: desm.model
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+desm.model\_location module
+---------------------------
+
+.. automodule:: desm.model_location
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+desm.primitive module
+---------------------
+
+.. automodule:: desm.primitive
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+desm.query module
+-----------------
+
+.. automodule:: desm.query
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+desm.similar module
+-------------------
+
+.. automodule:: desm.similar
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+desm.similarity\_request module
+-------------------------------
+
+.. automodule:: desm.similarity_request
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+desm.typevar module
+-------------------
+
+.. automodule:: desm.typevar
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+desm.word2vec module
+--------------------
+
+.. automodule:: desm.word2vec
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

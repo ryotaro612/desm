@@ -32,7 +32,7 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            pip install -e .[test] 
+            pip install -e .[test]
 
       - save_cache:
           paths:
@@ -52,4 +52,4 @@ jobs:
 
 #      - store_artifacts:
 #          path: test-reports
-#          destination: test-reports
+#          destination: test-report
