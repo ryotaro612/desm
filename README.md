@@ -1,5 +1,6 @@
 # DESM
-An implementation of a [Dual Embedding Space Model for Document Ranking](https://arxiv.org/pdf/1602.01137.pdf).
+An implementation of a [Dual Embedding Space Model for Document Ranking(DESM)](https://arxiv.org/pdf/1602.01137.pdf).
+[A gentile introduction to DESM](https://nryotaro.dev/posts/a_dual_embedding_space_model_for_document_ranking/).
 
 ## Build status
 
