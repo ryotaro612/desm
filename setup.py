@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 
 
 setup(name='desm',
-      version="0.0.1",
+      version="0.0.2",
       description=(
           'An implementation of dual embedding space model.'),
       python_requires='>=3.8.0',

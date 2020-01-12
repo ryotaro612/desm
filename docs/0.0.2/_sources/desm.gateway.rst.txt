@@ -1,0 +1,19 @@
+desm.gateway package
+====================
+
+.. automodule:: desm.gateway
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+desm.gateway.similarity module
+------------------------------
+
+.. automodule:: desm.gateway.similarity
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

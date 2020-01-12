@@ -1,0 +1,664 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>desm package &mdash; desm  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="desm.gateway package" href="desm.gateway.html" />
+    <link rel="prev" title="desm" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> desm
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">desm</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">desm package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="desm.gateway.html">desm.gateway package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="desm.service.html">desm.service package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-desm.document">desm.document module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-desm.factory">desm.factory module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-desm.first_class_collection">desm.first_class_collection module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-desm.keyword">desm.keyword module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-desm.model">desm.model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-desm.model_location">desm.model_location module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-desm.primitive">desm.primitive module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-desm.query">desm.query module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-desm.similar">desm.similar module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-desm.similarity_request">desm.similarity_request module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-desm.typevar">desm.typevar module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-desm.word2vec">desm.word2vec module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">desm</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">desm</a> &raquo;</li>
+        
+      <li>desm package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/desm.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-desm">
+<span id="desm-package"></span><h1>desm package<a class="headerlink" href="#module-desm" title="Permalink to this headline">¶</a></h1>
+<p>Expose the entrypoint.</p>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="desm.gateway.html">desm.gateway package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="desm.gateway.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="desm.gateway.html#module-desm.gateway.similarity">desm.gateway.similarity module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="desm.service.html">desm.service package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="desm.service.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="desm.service.html#module-desm.service.similarity">desm.service.similarity module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-desm.document">
+<span id="desm-document-module"></span><h2>desm.document module<a class="headerlink" href="#module-desm.document" title="Permalink to this headline">¶</a></h2>
+<p>Implement a class that represents document.</p>
+<dl class="class">
+<dt id="desm.document.Document">
+<em class="property">class </em><code class="sig-prename descclassname">desm.document.</code><code class="sig-name descname">Document</code><span class="sig-paren">(</span><em class="sig-param">tokens: List[str]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/document.html#Document"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.document.Document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#desm.first_class_collection.FirstClassSequence" title="desm.first_class_collection.FirstClassSequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">desm.first_class_collection.FirstClassSequence</span></code></a></p>
+<p>Represent a tokenized document.</p>
+<dl class="method">
+<dt id="desm.document.Document.get_document_filtered_by_container">
+<code class="sig-name descname">get_document_filtered_by_container</code><span class="sig-paren">(</span><em class="sig-param">container</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/document.html#Document.get_document_filtered_by_container"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.document.Document.get_document_filtered_by_container" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a <a class="reference internal" href="#desm.document.Document" title="desm.document.Document"><code class="xref py py-class docutils literal notranslate"><span class="pre">Document</span></code></a>.</p>
+<p>The document contains tokens shared with container.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#desm.document.Document" title="desm.document.Document">Document</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="desm.document.Document.sequence">
+<em class="property">property </em><code class="sig-name descname">sequence</code><a class="headerlink" href="#desm.document.Document.sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <code class="xref py py-class docutils literal notranslate"><span class="pre">tokens</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-desm.factory">
+<span id="desm-factory-module"></span><h2>desm.factory module<a class="headerlink" href="#module-desm.factory" title="Permalink to this headline">¶</a></h2>
+<p>Provide utilities to implement factory class.</p>
+<dl class="class">
+<dt id="desm.factory.ArgumentInspector">
+<em class="property">class </em><code class="sig-prename descclassname">desm.factory.</code><code class="sig-name descname">ArgumentInspector</code><span class="sig-paren">(</span><em class="sig-param">function: Callable</em>, <em class="sig-param">is_method: bool</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/factory.html#ArgumentInspector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.factory.ArgumentInspector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="desm.factory.ArgumentInspector.drop_invalid_arguments">
+<code class="sig-name descname">drop_invalid_arguments</code><span class="sig-paren">(</span><em class="sig-param">arguments: dict</em><span class="sig-paren">)</span> &#x2192; dict<a class="reference internal" href="_modules/desm/factory.html#ArgumentInspector.drop_invalid_arguments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.factory.ArgumentInspector.drop_invalid_arguments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the entries that cannot be passed to the function.</p>
+<p class="rubric">Notes</p>
+<p>The functions with positional or var keyword parameters are
+not supported.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><em>dict</em></p></li>
+<li><p><em>Return only the entries that the keys are</em></p></li>
+<li><p><em>members of the parameters.</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-desm.first_class_collection">
+<span id="desm-first-class-collection-module"></span><h2>desm.first_class_collection module<a class="headerlink" href="#module-desm.first_class_collection" title="Permalink to this headline">¶</a></h2>
+<p>Provide classes that represent first class collections.</p>
+<dl class="class">
+<dt id="desm.first_class_collection.FirstClassFileContextManagerProvider">
+<em class="property">class </em><code class="sig-prename descclassname">desm.first_class_collection.</code><code class="sig-name descname">FirstClassFileContextManagerProvider</code><span class="sig-paren">(</span><em class="sig-param">filename: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/first_class_collection.html#FirstClassFileContextManagerProvider"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.first_class_collection.FirstClassFileContextManagerProvider" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Provide a context manager.</p>
+<dl class="method">
+<dt id="desm.first_class_collection.FirstClassFileContextManagerProvider.transform">
+<em class="property">abstract </em><code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">item</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/first_class_collection.html#FirstClassFileContextManagerProvider.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.first_class_collection.FirstClassFileContextManagerProvider.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="desm.first_class_collection.FirstClassSequence">
+<em class="property">class </em><code class="sig-prename descclassname">desm.first_class_collection.</code><code class="sig-name descname">FirstClassSequence</code><a class="reference internal" href="_modules/desm/first_class_collection.html#FirstClassSequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.first_class_collection.FirstClassSequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="desm.first_class_collection.FirstClassSequence.apply_function">
+<code class="sig-name descname">apply_function</code><span class="sig-paren">(</span><em class="sig-param">function: Callable[[T], S]</em><span class="sig-paren">)</span> &#x2192; Generator[S, None, None]<a class="reference internal" href="_modules/desm/first_class_collection.html#FirstClassSequence.apply_function"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.first_class_collection.FirstClassSequence.apply_function" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="desm.first_class_collection.FirstClassSequence.filter_by_container">
+<code class="sig-name descname">filter_by_container</code><span class="sig-paren">(</span><em class="sig-param">container: Container[T]</em><span class="sig-paren">)</span> &#x2192; Generator[T, None, None]<a class="reference internal" href="_modules/desm/first_class_collection.html#FirstClassSequence.filter_by_container"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.first_class_collection.FirstClassSequence.filter_by_container" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return generator that emits items that container contains.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="desm.first_class_collection.FirstClassSequence.is_empty">
+<code class="sig-name descname">is_empty</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="_modules/desm/first_class_collection.html#FirstClassSequence.is_empty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.first_class_collection.FirstClassSequence.is_empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <cite>True</cite> if <a class="reference internal" href="#desm.first_class_collection.FirstClassSequence.sequence" title="desm.first_class_collection.FirstClassSequence.sequence"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sequence()</span></code></a> is empty.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="desm.first_class_collection.FirstClassSequence.sequence">
+<em class="property">abstract property </em><code class="sig-name descname">sequence</code><a class="headerlink" href="#desm.first_class_collection.FirstClassSequence.sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the items.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-desm.keyword">
+<span id="desm-keyword-module"></span><h2>desm.keyword module<a class="headerlink" href="#module-desm.keyword" title="Permalink to this headline">¶</a></h2>
+<p>Provide classes relevant to keywords.</p>
+<dl class="class">
+<dt id="desm.keyword.Keyword">
+<em class="property">class </em><code class="sig-prename descclassname">desm.keyword.</code><code class="sig-name descname">Keyword</code><span class="sig-paren">(</span><em class="sig-param">keyword: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/keyword.html#Keyword"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.keyword.Keyword" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#desm.primitive.Primitive" title="desm.primitive.Primitive"><code class="xref py py-class docutils literal notranslate"><span class="pre">desm.primitive.Primitive</span></code></a></p>
+<p>Represent a keyword.</p>
+<dl class="method">
+<dt id="desm.keyword.Keyword.primitive">
+<em class="property">property </em><code class="sig-name descname">primitive</code><a class="headerlink" href="#desm.keyword.Keyword.primitive" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="desm.keyword.KeywordContext">
+<em class="property">class </em><code class="sig-prename descclassname">desm.keyword.</code><code class="sig-name descname">KeywordContext</code><span class="sig-paren">(</span><em class="sig-param">filename: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/keyword.html#KeywordContext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.keyword.KeywordContext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#desm.first_class_collection.FirstClassFileContextManagerProvider" title="desm.first_class_collection.FirstClassFileContextManagerProvider"><code class="xref py py-class docutils literal notranslate"><span class="pre">desm.first_class_collection.FirstClassFileContextManagerProvider</span></code></a></p>
+<p>Provide keywords.</p>
+<dl class="method">
+<dt id="desm.keyword.KeywordContext.transform">
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">item: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/keyword.html#KeywordContext.transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.keyword.KeywordContext.transform" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-desm.model">
+<span id="desm-model-module"></span><h2>desm.model module<a class="headerlink" href="#module-desm.model" title="Permalink to this headline">¶</a></h2>
+<p>Implement DESM models.</p>
+<dl class="class">
+<dt id="desm.model.Desm">
+<em class="property">class </em><code class="sig-prename descclassname">desm.model.</code><code class="sig-name descname">Desm</code><span class="sig-paren">(</span><em class="sig-param">query_keyed_vectors: gensim.models.keyedvectors.Word2VecKeyedVectors</em>, <em class="sig-param">document_keyed_vectors: gensim.models.keyedvectors.Word2VecKeyedVectors</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/model.html#Desm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.model.Desm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A base model that implements DESM.</p>
+<dl class="method">
+<dt id="desm.model.Desm.find_similar_keywords">
+<code class="sig-name descname">find_similar_keywords</code><span class="sig-paren">(</span><em class="sig-param">top_n: int</em>, <em class="sig-param">keyword: desm.keyword.Keyword</em><span class="sig-paren">)</span> &#x2192; desm.similar.Similarities<a class="reference internal" href="_modules/desm/model.html#Desm.find_similar_keywords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.model.Desm.find_similar_keywords" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="desm.model.Desm.is_acknowledged">
+<code class="sig-name descname">is_acknowledged</code><span class="sig-paren">(</span><em class="sig-param">keyword: desm.keyword.Keyword</em><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="_modules/desm/model.html#Desm.is_acknowledged"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.model.Desm.is_acknowledged" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="desm.model.Desm.load">
+<em class="property">classmethod </em><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param">model_location: desm.model_location.ModelLocation</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/model.html#Desm.load"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.model.Desm.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load an instance of <a class="reference internal" href="#desm.model.Desm" title="desm.model.Desm"><code class="xref py py-class docutils literal notranslate"><span class="pre">Desm</span></code></a> to memory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#desm.model.Desm" title="desm.model.Desm">Desm</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="desm.model.Desm.rank">
+<code class="sig-name descname">rank</code><span class="sig-paren">(</span><em class="sig-param">query: desm.query.Query</em>, <em class="sig-param">document: desm.document.Document</em><span class="sig-paren">)</span> &#x2192; Optional[desm.similar.SimilarityScore]<a class="reference internal" href="_modules/desm/model.html#Desm.rank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.model.Desm.rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply ranking function.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="desm.model.Desm.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param">model_location: desm.model_location.ModelLocation</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/model.html#Desm.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.model.Desm.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write this model to <cite>model_location</cite>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="desm.model.DesmInOut">
+<em class="property">class </em><code class="sig-prename descclassname">desm.model.</code><code class="sig-name descname">DesmInOut</code><span class="sig-paren">(</span><em class="sig-param">query_keyed_vectors: gensim.models.keyedvectors.Word2VecKeyedVectors</em>, <em class="sig-param">document_keyed_vectors: gensim.models.keyedvectors.Word2VecKeyedVectors</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/model.html#DesmInOut"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.model.DesmInOut" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#desm.model.Desm" title="desm.model.Desm"><code class="xref py py-class docutils literal notranslate"><span class="pre">desm.model.Desm</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-desm.model_location">
+<span id="desm-model-location-module"></span><h2>desm.model_location module<a class="headerlink" href="#module-desm.model_location" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="desm.model_location.ModelLocation">
+<em class="property">class </em><code class="sig-prename descclassname">desm.model_location.</code><code class="sig-name descname">ModelLocation</code><span class="sig-paren">(</span><em class="sig-param">location: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/model_location.html#ModelLocation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.model_location.ModelLocation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Location of a model.</p>
+<dl class="method">
+<dt id="desm.model_location.ModelLocation.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">path: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/model_location.html#ModelLocation.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.model_location.ModelLocation.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create <a class="reference internal" href="#desm.model_location.ModelLocation" title="desm.model_location.ModelLocation"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelLocation</span></code></a> from a local path.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="desm.model_location.ModelLocation.get_filepath">
+<code class="sig-name descname">get_filepath</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/desm/model_location.html#ModelLocation.get_filepath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.model_location.ModelLocation.get_filepath" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="desm.model_location.ModelLocation.open_gz_readable_stream">
+<code class="sig-name descname">open_gz_readable_stream</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/model_location.html#ModelLocation.open_gz_readable_stream"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.model_location.ModelLocation.open_gz_readable_stream" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="desm.model_location.ModelLocation.open_gz_writable_stream">
+<code class="sig-name descname">open_gz_writable_stream</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/model_location.html#ModelLocation.open_gz_writable_stream"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.model_location.ModelLocation.open_gz_writable_stream" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="desm.model_location.ModelLocation.open_writable_stream">
+<code class="sig-name descname">open_writable_stream</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/model_location.html#ModelLocation.open_writable_stream"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.model_location.ModelLocation.open_writable_stream" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-desm.primitive">
+<span id="desm-primitive-module"></span><h2>desm.primitive module<a class="headerlink" href="#module-desm.primitive" title="Permalink to this headline">¶</a></h2>
+<p>Implement a wrapper for primitive and strings.</p>
+<dl class="class">
+<dt id="desm.primitive.Primitive">
+<em class="property">class </em><code class="sig-prename descclassname">desm.primitive.</code><code class="sig-name descname">Primitive</code><a class="reference internal" href="_modules/desm/primitive.html#Primitive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.primitive.Primitive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Wrapper for primitive and strings.</p>
+<dl class="method">
+<dt id="desm.primitive.Primitive.handle">
+<code class="sig-name descname">handle</code><span class="sig-paren">(</span><em class="sig-param">handler</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/primitive.html#Primitive.handle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.primitive.Primitive.handle" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="desm.primitive.Primitive.primitive">
+<em class="property">abstract property </em><code class="sig-name descname">primitive</code><a class="headerlink" href="#desm.primitive.Primitive.primitive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the raw value.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-desm.query">
+<span id="desm-query-module"></span><h2>desm.query module<a class="headerlink" href="#module-desm.query" title="Permalink to this headline">¶</a></h2>
+<p>Implement a query class.</p>
+<dl class="class">
+<dt id="desm.query.Query">
+<em class="property">class </em><code class="sig-prename descclassname">desm.query.</code><code class="sig-name descname">Query</code><span class="sig-paren">(</span><em class="sig-param">keywords: List[desm.keyword.Keyword]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/query.html#Query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.query.Query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#desm.first_class_collection.FirstClassSequence" title="desm.first_class_collection.FirstClassSequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">desm.first_class_collection.FirstClassSequence</span></code></a></p>
+<p>Represent a query.</p>
+<dl class="method">
+<dt id="desm.query.Query.get_query_filtered_by_container">
+<code class="sig-name descname">get_query_filtered_by_container</code><span class="sig-paren">(</span><em class="sig-param">container: Container[str]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/query.html#Query.get_query_filtered_by_container"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.query.Query.get_query_filtered_by_container" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter by a container.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#desm.query.Query" title="desm.query.Query">Query</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="desm.query.Query.sequence">
+<em class="property">property </em><code class="sig-name descname">sequence</code><a class="headerlink" href="#desm.query.Query.sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <code class="xref py py-attr docutils literal notranslate"><span class="pre">keywords</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-desm.similar">
+<span id="desm-similar-module"></span><h2>desm.similar module<a class="headerlink" href="#module-desm.similar" title="Permalink to this headline">¶</a></h2>
+<p>Implement classes relevant with similarity which is estimated by models.</p>
+<dl class="class">
+<dt id="desm.similar.SimilarKeywords">
+<em class="property">class </em><code class="sig-prename descclassname">desm.similar.</code><code class="sig-name descname">SimilarKeywords</code><span class="sig-paren">(</span><em class="sig-param">keyword: desm.keyword.Keyword</em>, <em class="sig-param">similarities: desm.similar.Similarities</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/similar.html#SimilarKeywords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.similar.SimilarKeywords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represent a keyword and the found similar keywords.</p>
+<dl class="attribute">
+<dt id="desm.similar.SimilarKeywords.keyword">
+<code class="sig-name descname">keyword</code><a class="headerlink" href="#desm.similar.SimilarKeywords.keyword" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#desm.keyword.Keyword" title="desm.keyword.Keyword">Keyword</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="desm.similar.SimilarKeywords.similarities">
+<code class="sig-name descname">similarities</code><a class="headerlink" href="#desm.similar.SimilarKeywords.similarities" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#desm.similar.Similarities" title="desm.similar.Similarities">Similarities</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="desm.similar.SimilarKeywords.get_number_of_similar_keywords">
+<code class="sig-name descname">get_number_of_similar_keywords</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; int<a class="reference internal" href="_modules/desm/similar.html#SimilarKeywords.get_number_of_similar_keywords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.similar.SimilarKeywords.get_number_of_similar_keywords" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="desm.similar.SimilarKeywords.get_similarity_tuples">
+<code class="sig-name descname">get_similarity_tuples</code><span class="sig-paren">(</span><em class="sig-param">round_decimals=None</em><span class="sig-paren">)</span> &#x2192; List[Tuple[str, numpy.float32]]<a class="reference internal" href="_modules/desm/similar.html#SimilarKeywords.get_similarity_tuples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.similar.SimilarKeywords.get_similarity_tuples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the primitive values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="desm.similar.SimilarKeywords.raw_keyword">
+<code class="sig-name descname">raw_keyword</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/desm/similar.html#SimilarKeywords.raw_keyword"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.similar.SimilarKeywords.raw_keyword" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="desm.similar.Similarities">
+<em class="property">class </em><code class="sig-prename descclassname">desm.similar.</code><code class="sig-name descname">Similarities</code><span class="sig-paren">(</span><em class="sig-param">similarities: List[desm.similar.Similarity]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/similar.html#Similarities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.similar.Similarities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#desm.first_class_collection.FirstClassSequence" title="desm.first_class_collection.FirstClassSequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">desm.first_class_collection.FirstClassSequence</span></code></a></p>
+<p>A sequence of <a class="reference internal" href="#desm.similar.Similarity" title="desm.similar.Similarity"><code class="xref py py-class docutils literal notranslate"><span class="pre">Similarity</span></code></a> objects.</p>
+<dl class="method">
+<dt id="desm.similar.Similarities.create_from_tuples">
+<em class="property">classmethod </em><code class="sig-name descname">create_from_tuples</code><span class="sig-paren">(</span><em class="sig-param">similarities: Iterator[Tuple[str, numbers.Number]]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/similar.html#Similarities.create_from_tuples"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.similar.Similarities.create_from_tuples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a Similarities.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="desm.similar.Similarities.sequence">
+<em class="property">property </em><code class="sig-name descname">sequence</code><a class="headerlink" href="#desm.similar.Similarities.sequence" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="desm.similar.Similarity">
+<em class="property">class </em><code class="sig-prename descclassname">desm.similar.</code><code class="sig-name descname">Similarity</code><span class="sig-paren">(</span><em class="sig-param">keyword: desm.keyword.Keyword</em>, <em class="sig-param">score: desm.similar.SimilarityScore</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/similar.html#Similarity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.similar.Similarity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="desm.similar.Similarity.get_raw_score">
+<code class="sig-name descname">get_raw_score</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; numpy.float32<a class="reference internal" href="_modules/desm/similar.html#Similarity.get_raw_score"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.similar.Similarity.get_raw_score" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="desm.similar.SimilarityScore">
+<em class="property">class </em><code class="sig-prename descclassname">desm.similar.</code><code class="sig-name descname">SimilarityScore</code><span class="sig-paren">(</span><em class="sig-param">score: numpy.float32</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/similar.html#SimilarityScore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.similar.SimilarityScore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-desm.similarity_request">
+<span id="desm-similarity-request-module"></span><h2>desm.similarity_request module<a class="headerlink" href="#module-desm.similarity_request" title="Permalink to this headline">¶</a></h2>
+<p>Provide a class that represent a request to find similar keywords.</p>
+<dl class="class">
+<dt id="desm.similarity_request.SimilarityRequest">
+<em class="property">class </em><code class="sig-prename descclassname">desm.similarity_request.</code><code class="sig-name descname">SimilarityRequest</code><span class="sig-paren">(</span><em class="sig-param">top_n: int</em>, <em class="sig-param">keyword_context: desm.keyword.KeywordContext</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/similarity_request.html#SimilarityRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.similarity_request.SimilarityRequest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represent a request to find similar keywords.</p>
+<dl class="attribute">
+<dt id="desm.similarity_request.SimilarityRequest.top_n">
+<code class="sig-name descname">top_n</code><a class="headerlink" href="#desm.similarity_request.SimilarityRequest.top_n" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="desm.similarity_request.SimilarityRequest.keyword_context">
+<code class="sig-name descname">keyword_context</code><a class="headerlink" href="#desm.similarity_request.SimilarityRequest.keyword_context" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#desm.keyword.KeywordContext" title="desm.keyword.KeywordContext">KeywordContext</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="desm.similarity_request.SimilarityRequest.keyword_stream">
+<code class="sig-name descname">keyword_stream</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/desm/similarity_request.html#SimilarityRequest.keyword_stream"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.similarity_request.SimilarityRequest.keyword_stream" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-desm.typevar">
+<span id="desm-typevar-module"></span><h2>desm.typevar module<a class="headerlink" href="#module-desm.typevar" title="Permalink to this headline">¶</a></h2>
+<p>Provide typevars.</p>
+</div>
+<div class="section" id="module-desm.word2vec">
+<span id="desm-word2vec-module"></span><h2>desm.word2vec module<a class="headerlink" href="#module-desm.word2vec" title="Permalink to this headline">¶</a></h2>
+<p>Implement the factory to create word2vec models.</p>
+<dl class="class">
+<dt id="desm.word2vec.Word2VecFactory">
+<em class="property">class </em><code class="sig-prename descclassname">desm.word2vec.</code><code class="sig-name descname">Word2VecFactory</code><a class="reference internal" href="_modules/desm/word2vec.html#Word2VecFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.word2vec.Word2VecFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Provide a method to create word2vec models.</p>
+<dl class="method">
+<dt id="desm.word2vec.Word2VecFactory.create">
+<em class="property">classmethod </em><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span> &#x2192; gensim.models.word2vec.Word2Vec<a class="reference internal" href="_modules/desm/word2vec.html#Word2VecFactory.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#desm.word2vec.Word2VecFactory.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a word2vec model.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="desm.gateway.html" class="btn btn-neutral float-right" title="desm.gateway package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="modules.html" class="btn btn-neutral float-left" title="desm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright MIT License
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

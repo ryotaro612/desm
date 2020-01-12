@@ -1,0 +1,275 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>desm.similar &mdash; desm  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> desm
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">desm</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">desm</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>desm.similar</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for desm.similar</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Implement classes relevant with similarity which is estimated by models.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Iterator</span>
+<span class="kn">from</span> <span class="nn">numbers</span> <span class="kn">import</span> <span class="n">Number</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">.keyword</span> <span class="kn">import</span> <span class="n">Keyword</span>
+<span class="kn">from</span> <span class="nn">.first_class_collection</span> <span class="kn">import</span> <span class="n">FirstClassSequence</span>
+
+
+<div class="viewcode-block" id="SimilarityScore"><a class="viewcode-back" href="../../desm.html#desm.similar.SimilarityScore">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">SimilarityScore</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">score</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span></div>
+
+
+<div class="viewcode-block" id="Similarity"><a class="viewcode-back" href="../../desm.html#desm.similar.Similarity">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Similarity</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">keyword</span><span class="p">:</span> <span class="n">Keyword</span>
+    <span class="n">score</span><span class="p">:</span> <span class="n">SimilarityScore</span>
+
+<div class="viewcode-block" id="Similarity.get_raw_score"><a class="viewcode-back" href="../../desm.html#desm.similar.Similarity.get_raw_score">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw_score</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="o">.</span><span class="n">score</span></div></div>
+
+
+<div class="viewcode-block" id="Similarities"><a class="viewcode-back" href="../../desm.html#desm.similar.Similarities">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Similarities</span><span class="p">(</span><span class="n">FirstClassSequence</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A sequence of :py:class:`Similarity` objects.&quot;&quot;&quot;</span>
+
+    <span class="n">similarities</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Similarity</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">similarities</span>
+
+<div class="viewcode-block" id="Similarities.create_from_tuples"><a class="viewcode-back" href="../../desm.html#desm.similar.Similarities.create_from_tuples">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">create_from_tuples</span><span class="p">(</span>
+            <span class="bp">cls</span><span class="p">,</span> <span class="n">similarities</span><span class="p">:</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Number</span><span class="p">]]):</span>
+        <span class="sd">&quot;&quot;&quot;Create a Similarities.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Similarities</span><span class="p">([</span><span class="n">Similarity</span><span class="p">(</span>
+            <span class="n">Keyword</span><span class="p">(</span><span class="n">similarity</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+            <span class="n">SimilarityScore</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">similarity</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span>
+            <span class="k">for</span> <span class="n">similarity</span> <span class="ow">in</span> <span class="n">similarities</span><span class="p">])</span></div></div>
+
+
+<div class="viewcode-block" id="SimilarKeywords"><a class="viewcode-back" href="../../desm.html#desm.similar.SimilarKeywords">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">SimilarKeywords</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Represent a keyword and the found similar keywords.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    keyword: Keyword</span>
+
+<span class="sd">    similarities: Similarities</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">keyword</span><span class="p">:</span> <span class="n">Keyword</span>
+    <span class="n">similarities</span><span class="p">:</span>  <span class="n">Similarities</span>
+
+<div class="viewcode-block" id="SimilarKeywords.get_number_of_similar_keywords"><a class="viewcode-back" href="../../desm.html#desm.similar.SimilarKeywords.get_number_of_similar_keywords">[docs]</a>    <span class="k">def</span> <span class="nf">get_number_of_similar_keywords</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">similarities</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SimilarKeywords.raw_keyword"><a class="viewcode-back" href="../../desm.html#desm.similar.SimilarKeywords.raw_keyword">[docs]</a>    <span class="k">def</span> <span class="nf">raw_keyword</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">keyword</span><span class="o">.</span><span class="n">keyword</span></div>
+
+<div class="viewcode-block" id="SimilarKeywords.get_similarity_tuples"><a class="viewcode-back" href="../../desm.html#desm.similar.SimilarKeywords.get_similarity_tuples">[docs]</a>    <span class="k">def</span> <span class="nf">get_similarity_tuples</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">round_decimals</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">]]:</span>
+        <span class="sd">&quot;&quot;&quot;Get the primitive values.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[(</span><span class="n">similarity</span><span class="o">.</span><span class="n">keyword</span><span class="o">.</span><span class="n">keyword</span><span class="p">,</span>
+                 <span class="bp">self</span><span class="o">.</span><span class="n">_round</span><span class="p">(</span><span class="n">similarity</span><span class="o">.</span><span class="n">get_raw_score</span><span class="p">(),</span> <span class="n">round_decimals</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">similarity</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">similarities</span><span class="p">]</span></div>
+
+    <span class="k">def</span> <span class="nf">_round</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">np_value</span><span class="p">,</span> <span class="n">round_decimals</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np_value</span><span class="p">,</span> <span class="n">round_decimals</span><span class="p">)</span> \
+            <span class="k">if</span> <span class="n">round_decimals</span> <span class="k">else</span> <span class="n">np_value</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright MIT License
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
