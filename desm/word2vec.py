@@ -16,4 +16,5 @@ class Word2VecFactory:
         valid_arguments = inspector.drop_invalid_arguments(kwargs)
         cls._LOGGER.info('Create a word2vec model with parameters as %s',
                          valid_arguments)
-        return m.Word2Vec(**valid_arguments)
+        return m.Word2Vec(**dict((k, v)
+                                 for k, v in valid_arguments.items() if v))
